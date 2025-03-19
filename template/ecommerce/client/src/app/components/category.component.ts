@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {Product} from '../models';
 import {ProductService} from '../product.service';
 import {ActivatedRoute} from '@angular/router';
+import { CartStore } from '../cart.store';
 
 @Component({
   selector: 'app-category',

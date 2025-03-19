@@ -1,6 +1,7 @@
 package vttp.batch4.csf.ecommerce.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import vttp.batch4.csf.ecommerce.models.Order;
@@ -16,7 +17,8 @@ public class PurchaseOrderService {
   // If this method is changed, any assessment task relying on this method will
   // not be marked
   // You may only add Exception to the method's signature
-  public void createNewPurchaseOrder(Order order) {
+  public void createNewPurchaseOrder(Order order) throws DataAccessException{
     // TODO Task 3
+    poRepo.create(order);
   }
 }

@@ -38,4 +38,14 @@ public class Utils {
       .add("quantity", product.getQuantity())
       .build();
   }
+
+  public static final String INSERT_INTO_ORDERS ="""
+      insert into orders(order_id, date, name, address, priority, comments)
+        values (?, ?, ?, ?, ? ,?);
+      """;
+
+  public static final String INSERT_INTO_LINEITEMS = """
+      insert into lineitems(order_id, prod_id, quantity, name, price)
+        values (?, ?, ?, ?, ?);
+      """;
 }
