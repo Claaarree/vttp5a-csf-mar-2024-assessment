@@ -3,8 +3,8 @@ FROM node:23 AS buildang
 
 WORKDIR /src
 
-COPY ecommerce/client/*.json .
-COPY ecommerce/client/src src
+COPY client/*.json .
+COPY client/src src
 
 #Run npm to install node_modules -> package.json
 RUN npm ci
@@ -17,13 +17,15 @@ FROM eclipse-temurin:23-jdk AS buildjava
 
 WORKDIR /src
 
-COPY ecommerce/mvnw .
-COPY ecommerce/pom.xml .
-COPY ecommerce/src src
-COPY ecommerce/.mvn .mvn
+COPY mvnw .
+COPY pom.xml .
+COPY src src
+COPY .mvn .mvn
 
 # copy the angular app over to static directory
+COPY --from=buildang /src/dist/client-side/browser/assets src/main/resources/static/assets
 COPY --from=buildang /src/dist/client-side/browser/* src/main/resources/static
+
 
 # make mvnw executable
 RUN chmod a+x mvnw
