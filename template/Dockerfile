@@ -4,7 +4,6 @@ FROM node:23 AS buildang
 WORKDIR /src
 
 COPY ecommerce/client/*.json .
-COPY ecommerce/client/src/assets src/assets
 COPY ecommerce/client/src src
 
 #Run npm to install node_modules -> package.json
